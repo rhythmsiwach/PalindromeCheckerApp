@@ -1,99 +1,30 @@
-import java.util.*;
-
-class Node {
-    char data;
-    Node next;
-
-    Node(char data) {
-        this.data = data;
-        this.next = null;
-    }
-}
-
 public class PalindromeCheckerApp {
 
-    // Insert node at end
-    static Node insert(Node head, char ch) {
-        Node newNode = new Node(ch);
+    // Recursive method to check palindrome
+    static boolean isPalindrome(String str, int start, int end) {
 
-        if (head == null) {
-            return newNode;
-        }
-
-        Node temp = head;
-        while (temp.next != null) {
-            temp = temp.next;
-        }
-
-        temp.next = newNode;
-        return head;
-    }
-
-    // Reverse linked list
-    static Node reverse(Node head) {
-        Node prev = null;
-        Node curr = head;
-        Node next;
-
-        while (curr != null) {
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-
-        return prev;
-    }
-
-    // Check palindrome
-    static boolean isPalindrome(Node head) {
-
-        if (head == null || head.next == null) {
+        // Base condition
+        if (start >= end) {
             return true;
         }
 
-        Node slow = head;
-        Node fast = head;
-
-        // Find middle using fast and slow pointer
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+        // If characters are not equal
+        if (str.charAt(start) != str.charAt(end)) {
+            return false;
         }
 
-        // Reverse second half
-        Node secondHalf = reverse(slow);
-        Node firstHalf = head;
-
-        // Compare halves
-        while (secondHalf != null) {
-            if (firstHalf.data != secondHalf.data) {
-                return false;
-            }
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next;
-        }
-
-        return true;
+        // Recursive call
+        return isPalindrome(str, start + 1, end - 1);
     }
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter string: ");
-        String str = sc.nextLine();
+        String word = "madam";
 
-        Node head = null;
-
-        // Convert string to linked list
-        for (char c : str.toCharArray()) {
-            head = insert(head, c);
-        }
-
-        if (isPalindrome(head)) {
-            System.out.println("Palindrome");
+        if (isPalindrome(word, 0, word.length() - 1)) {
+            System.out.println(word + " is a Palindrome");
         } else {
-            System.out.println("Not a Palindrome");
+            System.out.println(word + " is not a Palindrome");
         }
     }
 }
