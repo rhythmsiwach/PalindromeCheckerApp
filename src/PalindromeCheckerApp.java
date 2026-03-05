@@ -1,24 +1,36 @@
+class PalindromeChecker {
+
+    // Method to check palindrome
+    public boolean checkPalindrome(String str) {
+
+        String reversed = "";
+
+        // Reverse the string
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed = reversed + str.charAt(i);
+        }
+
+        // Compare original and reversed
+        if (str.equals(reversed)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String text = "Madam Im Adam";
+        PalindromeChecker checker = new PalindromeChecker();
 
-        // Normalize the string (remove spaces and convert to lowercase)
-        String normalized = text.replaceAll("\\s+", "").toLowerCase();
+        String word = "madam";
 
-        String reversed = "";
-
-        // Reverse the normalized string
-        for (int i = normalized.length() - 1; i >= 0; i--) {
-            reversed = reversed + normalized.charAt(i);
-        }
-
-        // Check palindrome
-        if (normalized.equals(reversed)) {
-            System.out.println(text + " is a Palindrome (Ignoring case and spaces)");
+        if (checker.checkPalindrome(word)) {
+            System.out.println(word + " is a Palindrome");
         } else {
-            System.out.println(text + " is not a Palindrome");
+            System.out.println(word + " is not a Palindrome");
         }
     }
 }
