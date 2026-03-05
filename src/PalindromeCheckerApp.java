@@ -1,21 +1,35 @@
 public class PalindromeCheckerApp // File Name: UseCase1PalindromeCheckerApp.java
 
- {
-    // UC1: Display Welcome Message
-    public static void showWelcome() {
-        System.out.println("===========================================");
-        System.out.println("     Welcome to Palindrome Checker App     ");
-        System.out.println("     Version: 1.0.0                        ");
-        System.out.println("===========================================");
-        System.out.println("Application is starting...");
+// File Name: UseCase2PalindromeCheckerApp.java
+
+{
+
+    // UC2: Hardcoded Palindrome Check
+    public static void hardcodedPalindrome() {
+        // Hardcoded string to check
+        String word = "madam";
+        String reverse = "";
+
+        // Reverse the string
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reverse += word.charAt(i);
+        }
+
+        // Check if palindrome
+        if (word.equals(reverse)) {
+            System.out.println(word + " is a Palindrome");
+        } else {
+            System.out.println(word + " is not a Palindrome");
+        }
     }
 
-    // Main Method – Program Entry
+    // Main method – entry point
     public static void main(String[] args) {
-        // Display welcome message
-        showWelcome();
+        System.out.println("==== UC2: Hardcoded Palindrome Checker ====");
 
-        // Here the program can continue to next use case or exit
-        System.out.println("Proceeding to palindrome processing...");
+        // Call the palindrome check method
+        hardcodedPalindrome();
+
+        System.out.println("Program execution completed.");
     }
 }
