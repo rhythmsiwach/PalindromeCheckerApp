@@ -1,46 +1,41 @@
-// File Name: UseCase6PalindromeCheckerApp.java
+// File Name: UseCase7PalindromeCheckerApp.java
 
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        Deque<Character> deque = new ArrayDeque<>();
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
-
-        System.out.println("==== UC6: Queue + Stack Based Palindrome Checker ====");
+        System.out.println("==== UC7: Deque-Based Optimized Palindrome Checker ====");
 
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        // Push into stack and enqueue into queue
+        // Insert characters into deque
         for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-            stack.push(ch);       // LIFO
-            queue.add(ch);        // FIFO
+            deque.addLast(input.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue (queue) with pop (stack)
-        for (int i = 0; i < input.length(); i++) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
 
-            char fromStack = stack.pop();
-            char fromQueue = queue.remove();
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-            if (fromStack != fromQueue) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Print result
+        // Display result
         if (isPalindrome) {
             System.out.println(input + " is a Palindrome");
         } else {
